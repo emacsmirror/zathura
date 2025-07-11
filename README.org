@@ -1,0 +1,15 @@
+* zathura.el
+  It's a set of simple commands that create hyperlinks to documents open in Zathura document viewer. Following such a link will open the linked document in a new instance of Zathura.
+
+** Supported link formats
+   * org-mode *elisp*
+   * Hyperbole buttons
+
+   Feel free to make a PR if you wish to add another link format.
+
+** Installation
+   Download ~zathura.el~ and install it via ~package-install-file~ or ~package-install-from-buffer~.
+
+** Usage
+   1. Call ~zathura-insert-org-elisp-link~ or ~zathura-insert-hy-link~.
+   2. If there are multiple documents open in ~zathura~, you'll be prompted to pick one.
