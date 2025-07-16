@@ -99,7 +99,8 @@
 
 
 (defun zathura-insert-hy-link ()
-  "Insert a link in the format used by Hyperbole to the current page from the chosen process of `zathura'"
+  "Insert a link in the format used by Hyperbole to the current page from
+the chosen process of `zathura'"
   (interactive)
   (cl-destructuring-bind (file . page) (zathura-get-link-details)
 	(insert (format "<zathura \"%s\" %s>" file page))))
