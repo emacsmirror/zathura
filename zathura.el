@@ -1,7 +1,7 @@
 ;;; zathura.el --- Summary -*- lexical-binding: t -*-
 
-;; Author: treflip
-;; Maintainer: treflip
+;; Author: Aleksandr Kuzmin
+;; Maintainer: Aleksandr Kuzmin
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Homepage: https://codeberg.org/treflip/zathura.el
