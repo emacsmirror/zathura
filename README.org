@@ -1,4 +1,5 @@
 * zathura.el
+  [[https://melpa.org/#/zathura][file:https://melpa.org/packages/zathura-badge.svg]]
   It's a set of simple commands that create hyperlinks to documents open in Zathura document viewer. Following such a link will open the linked document in a new instance of Zathura.
 
 ** Supported link formats

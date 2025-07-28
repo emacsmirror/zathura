@@ -39,11 +39,13 @@
 
 
 (defun zathura--get-procs ()
+  "Retrieve all the running processes of zathura."
   (cl-remove-if-not (lambda (p) (string-match "zathura" p))
                     (dbus-list-names :session)))
 
 
 (defun zathura--dump-interface ()
+  "Get the D-Bus interface of zathura.  For dbug puproses."
   (dbus-introspect-get-interface :session
                                  (elt (zathura--get-procs) 0)
                                  zathura-service-path
@@ -51,7 +53,8 @@
 
 
 (defun zathura--annotate-candidate (proc)
-  ;; replace with (format ...) ?
+  "Annotate `PROC' for completion with its file and page."
+  ;; TODO: replace concat with format
   (propertize (concat "   page "
                       (format "%s" (dbus-get-property :session
 													  proc
@@ -68,6 +71,7 @@
 
 
 (defun zathura--pick-process (procs)
+  "Pick a process out of `PROCS' interactively."
   (completing-read "Select process: "
                    (lambda (str pred action)
                      (if (eq action 'metadata)
@@ -77,6 +81,8 @@
 
 
 (defun zathura-get-link-details ()
+  "Retrieve the link details: a file and page from one of the running
+zathura processes."
   (let* ((procs (zathura--get-procs))
          (service)
          (page)
@@ -86,7 +92,7 @@
           ((> (length procs) 1)
            (setq service (zathura--pick-process procs)))
           ((< (length procs) 1)
-           (error "Zathura is not running.")))
+           (error "Zathura is not running")))
     (setq page (dbus-get-property :session service zathura-service-path
                                   zathura-service-iname "pagenumber"))
     (setq file (dbus-get-property :session service zathura-service-path
@@ -95,7 +101,7 @@
 
 
 (defun zathura (file &optional page)
-  "Call zathura with the given `file' and `page'."
+  "Call zathura with the given `FILE' and `PAGE'."
   (if page
       (call-process "zathura" nil 0 nil "-P" (format "%s" page) file)
     (call-process "zathura" nil 0 nil file)))
@@ -103,7 +109,7 @@
 
 (defun zathura-insert-hy-link ()
   "Insert a link in the format used by Hyperbole to the current page from
-the chosen process of `zathura'"
+the chosen process of `zathura'."
   (interactive)
   (cl-destructuring-bind (file . page) (zathura-get-link-details)
     (insert (format "<zathura \"%s\" %s>" file page))))
@@ -111,7 +117,7 @@ the chosen process of `zathura'"
 
 (defun zathura-insert-org-elisp-link ()
   "Insert an elisp org-link to the current page from the chosen process
- of `zathura'"
+of `zathura'"
   (interactive)
   (cl-destructuring-bind (file . page) (zathura-get-link-details)
     (insert (format "[[elisp:(zathura \"%s\" %s)][%s]]"
