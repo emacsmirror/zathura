@@ -100,6 +100,7 @@ zathura processes."
     (cons file page)))
 
 
+;;;###autoload
 (defun zathura (file &optional page)
   "Call zathura with the given `FILE' and `PAGE'."
   (if page
@@ -107,6 +108,7 @@ zathura processes."
     (call-process "zathura" nil 0 nil file)))
 
 
+;;;###autoload
 (defun zathura-insert-hy-link ()
   "Insert a link in the format used by Hyperbole to the current page from
 the chosen process of `zathura'."
@@ -115,6 +117,7 @@ the chosen process of `zathura'."
     (insert (format "<zathura \"%s\" %s>" file page))))
 
 
+;;;###autoload
 (defun zathura-insert-org-elisp-link ()
   "Insert an elisp org-link to the current page from the chosen process
 of `zathura'"
