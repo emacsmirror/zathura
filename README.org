@@ -9,7 +9,8 @@
    Feel free to make a PR if you wish to add another link format.
 
 ** Installation
-   * Download ~zathura.el~ and install it via ~package-install-file~ or ~package-install-from-buffer~ or use ~package-vc-install~.
+   * It's available on [[https://melpa.org/][MELPA]].
+   * Alternative: download ~zathura.el~ and install it via ~package-install-file~ or ~package-install-from-buffer~ or use ~package-vc-install~.
 
 ** Usage
    1. Call ~zathura-insert-org-elisp-link~ or ~zathura-insert-hy-link~.
